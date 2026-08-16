@@ -1,0 +1,30 @@
+services:
+
+  mysql:
+    image: mysql:8.4
+    container_name: s3-file-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: s3_file_service
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  s3-file-service:
+    image: s3-file-service:1.0
+    container_name: s3-file-service
+    ports:
+      - "8090:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/s3_file_service
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      AWS_REGION: ap-south-1
+    depends_on:
+      - mysql
+
+volumes:
+  mysql_data:
