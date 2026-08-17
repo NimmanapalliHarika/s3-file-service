@@ -534,16 +534,3 @@ Docker Compose
      +
 JUnit
 ```
-
-## Author
-
-**Harika**
-
-Java Backend Developer
-
-**GitHub:**  
-https://github.com/NimmanapalliHarika
-
-## License
-
-This project is created for learning, portfolio, and demonstration purposes.
